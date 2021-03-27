@@ -1,0 +1,13 @@
+<ul class="list-group">
+  <li class="list-group-item" routerLink="customers">Tüm Müşteriler</li>
+  <li
+    (click)="setCurrentCustomer(customer)"
+    routerLink="/customers/{{ customer.customerId }}"
+    *ngFor="let customer of customers"
+    [class]="getCurrentCustomerClass(customer)"
+  >
+    {{ customer.companyName }}
+  </li>
+</ul>
+
+<h5 *ngIf="currentCustomer">{{ currentCustomer.companyName }} seçtiniz.</h5>
