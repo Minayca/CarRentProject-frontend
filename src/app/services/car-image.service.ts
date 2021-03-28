@@ -8,11 +8,12 @@ import { ListResponseModel } from '../models/listResponseModel';
   providedIn: 'root',
 })
 export class CarImageService {
-  apiUrl = 'https://localhost:44357/api/carImages/getall';
+  apiUrl = 'https://localhost:44357/api/carimages/getimagesbycarid?carId=';
 
   constructor(private httpClient: HttpClient) {}
 
-  getCarImages(): Observable<ListResponseModel<CarImage>> {
-    return this.httpClient.get<ListResponseModel<CarImage>>(this.apiUrl);
+  getImageByCarId(carId: number): Observable<ListResponseModel<CarImage>> {
+    let newPath = this.apiUrl + carId;
+    return this.httpClient.get<ListResponseModel<CarImage>>(newPath);
   }
 }

@@ -1,1 +1,40 @@
-<p>car-image works!</p>
+<button type="button" class="btn btn-secondary" (click)="goToCars()">
+  Geri
+</button>
+
+<div id="carImageSlide" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner" style="height: 70vh; width: 80vh">
+    <div
+      *ngFor="let carImage of carImages; index as i; first as firstImage"
+      class="carousel-item align-self-center"
+      [ngClass]="{ active: firstImage }"
+      style="height: 100%; width: 100%"
+    >
+      <img
+        src="https://localhost:44357/Images/{{ carImage.imageName }}"
+        alt="Araba"
+        class=""
+        style="height: 100%; width: 100%"
+      />
+    </div>
+
+    <a
+      class="carousel-control-prev"
+      href="#carImageSlide"
+      role="button"
+      data-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a
+      class="carousel-control-next"
+      href="#carImageSlide"
+      role="button"
+      data-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
