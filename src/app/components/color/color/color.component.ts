@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Color } from 'src/app/models/color';
 import { ColorService } from 'src/app/services/color.service';
 
@@ -9,44 +9,27 @@ import { ColorService } from 'src/app/services/color.service';
 })
 export class ColorComponent implements OnInit {
   colors: Color[] = [];
-  currentColor: Color;
-  dataLoaded = false;
+  selectedColor: Color;
+  allColor: Color;
+  @Output() colorId = new EventEmitter<string>();
 
   constructor(private colorService: ColorService) {}
 
   ngOnInit(): void {
-    this.getColors();
+    this.getColor();
   }
-  getColors() {
+
+  getColor() {
     this.colorService.getColors().subscribe((response) => {
       this.colors = response.data;
-      this.dataLoaded = true;
     });
   }
 
-  setCurrentColor(color: Color) {
-    this.currentColor = color;
+  setCurrentColor() {
+    this.colorId.emit(this.selectedColor?.colorId.toString());
   }
 
-  setCurrentColorNull() {
-    this.currentColor= null;
-  }
-
-  getCurrentColorClass(color: Color){
-    if(color == this.currentColor){
-      return "list-group-item active"
-    }
-    else{
-      return "list-group-item"
-    }
-  }
-
-  getAllColorClass(){
-    if(!this.currentColor){
-      return "list-group-item active"
-    }
-    else{
-      return "list-group-item"
-    }
+  allColorSelected() {
+    return this.selectedColor == undefined ? true : false;
   }
 }

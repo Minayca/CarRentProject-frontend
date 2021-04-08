@@ -1,0 +1,49 @@
+<button
+  type="button"
+  class="btn btn-outline-secondary mb-3"
+  (click)="goToCars()"
+>
+  Geri
+</button>
+<!-- <div *ngIf="dataLoaded == false" class="spinner-border text-dark" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div> -->
+<div class="card mb-3">
+  <div class="row g-0">
+    <div class="col-md-6"><app-car-image></app-car-image></div>
+    <div class="col-md-6">
+      <div class="card-body">
+        <br>
+        <h5 class="card-title" style="padding-left: 4cm">
+          <strong>Araç Detayları</strong>
+        </h5>
+      </div>
+      <ul
+        *ngFor="let carDetail of carDetails"
+        class="list-group list-group-flush"
+        style="padding-left: 2.75cm; padding-right: 0.5cm"
+      >
+        <li class="list-group-item">
+          <strong>Marka:</strong> {{ carDetail.brandName }}
+        </li>
+        <li class="list-group-item">
+          <strong>Model:</strong> {{ carDetail.modelYear | date: "yyyy" }}
+        </li>
+        <li class="list-group-item">
+          <strong>Renk:</strong> {{ carDetail.colorName }}
+        </li>
+        <li class="list-group-item">
+          <strong>Fiyat:</strong> {{ carDetail.dailyPrice | currency: "₺" }}
+        </li>
+        <li class="list-group-item">
+          <strong>Açıklama:</strong> {{ carDetail.description }}
+        </li>
+        <br>
+        <br>
+        <button (click)="goToRental(carDetail.id)" type="button" class="btn btn-primary btn-lg">Kirala</button>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
