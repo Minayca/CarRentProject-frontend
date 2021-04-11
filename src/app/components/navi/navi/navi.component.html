@@ -20,6 +20,7 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
         </li>
+
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -29,15 +30,61 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            Dropdown
+            Listele
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li>
+              <button class="dropdown-item" (click)="goToCarList()">
+                Arabaları Listele
+              </button>
+            </li>
             <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li>
+              <button class="dropdown-item" (click)="goToBrandList()">
+                Markaları Listele
+              </button>
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <button class="dropdown-item" (click)="goToColorList()">
+                Renkleri Listele
+              </button>
+            </li>
           </ul>
         </li>
+
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Ekle
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <button class="dropdown-item" (click)="goToCarAdd()">
+                Araba Ekle
+              </button>
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <button class="dropdown-item" (click)="goToBrandAdd()">
+                Marka Ekle
+              </button>
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <button class="dropdown-item" (click)="goToColorAdd()">
+                Renk Ekle
+              </button>
+            </li>
+          </ul>
+        </li>
+
         <li class="nav-item">
           <a
             class="nav-link disabled"

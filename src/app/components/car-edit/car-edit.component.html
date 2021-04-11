@@ -1,0 +1,150 @@
+<table class="table table-hover mt-3">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Marka Id'si</th>
+      <th>Renk Id'si</th>
+      <th>Model Yılı</th>
+      <th>Günlük Ücret</th>
+      <th>Açıklama</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let car of carList">
+      <td>{{ car.id }}</td>
+      <td style="padding-left: 1cm">{{ car.brandId }}</td>
+      <td style="padding-left: 0.75cm">{{ car.colorId }}</td>
+      <td style="padding-left: 0.5cm">{{ car.modelYear }}</td>
+      <td style="padding-left: 1cm">{{ car.dailyPrice }}</td>
+      <td>{{ car.description }}</td>
+
+      <td>
+        <button
+          type="button"
+          class="btn btn-success btn-xs formButton"
+          data-bs-toggle="modal"
+          data-bs-target="#updateCarModal"
+          (click)="setSelectedCarToUpdate(car)"
+          style="margin-right: 16px"
+        >
+          Güncelle
+        </button>
+      </td>
+      <td>
+        <button type="button" class="btn btn-danger" (click)="delete(car)">
+          Sil
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div
+  class="modal fade"
+  id="updateCarModal"
+  tabindex="-1"
+  aria-labelledby="updateCarModal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateCarTitle">Araba Güncelle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="carUpdateForm" *ngIf="carUpdateForm">
+          <div class="row">
+            <div class="col-8">
+              <label for="id">Id</label>
+              <input
+                type="number"
+                class="form-control"
+                *ngIf="selectedCar"
+                id="id"
+                name="id"
+                formControlName="id"
+                value="{{ selectedCar.id }}"
+                readonly
+              />
+            </div>
+            <div class="col-8 mt-1">
+              <label for="brandId">Marka Id'si</label>
+              <input
+                type="number"
+                class="form-control"
+                *ngIf="selectedCar"
+                id="brandId"
+                formControlName="brandId"
+                value="{{ selectedCar.brandId }}"
+              />
+            </div>
+            <div class="col-8 mt-1">
+              <label for="colorId">Renk Id'si</label>
+              <input
+                type="number"
+                class="form-control"
+                *ngIf="selectedCar"
+                id="colorId"
+                formControlName="colorId"
+                value="{{ selectedCar.colorId }}"
+              />
+            </div>
+            <div class="col-8 mt-1">
+              <label for="dailyPrice">Günlük Ücret</label>
+              <input
+                type="number"
+                class="form-control"
+                *ngIf="selectedCar"
+                id="dailyPrice"
+                formControlName="dailyPrice"
+                value="{{ selectedCar.dailyPrice }}"
+              />
+            </div>
+            <div class="col-8 mt-1">
+              <label for="modelYear">Model Yılı</label>
+              <input
+                type="number"
+                class="form-control"
+                *ngIf="selectedCar"
+                id="modelYear"
+                formControlName="modelYear"
+                value="{{ selectedCar.modelYear }}"
+              />
+            </div>
+            <div class="col-8 mt-1">
+              <label for="description">Açıklama</label>
+              <input
+                type="text"
+                class="form-control"
+                *ngIf="selectedCar"
+                id="description"
+                formControlName="description"
+                value="{{ selectedCar.description }}"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Vazgeç
+        </button>
+        <button
+          class="btn btn-primary"
+          (click)="updateCar()"
+          data-bs-dismiss="modal"
+        >
+          Kaydet
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

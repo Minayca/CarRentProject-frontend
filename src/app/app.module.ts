@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +22,12 @@ import { CarDetailComponent } from './components/carDetail/car-detail/car-detail
 
 import { ToastrModule } from 'ngx-toastr';
 import { PaymentComponent } from './components/payment/payment/payment.component';
+import { BrandAddComponent } from './components/brand-add/brand-add.component';
+import { ColorAddComponent } from './components/color-add/color-add.component';
+import { CarAddComponent } from './components/car-add/car-add.component';
+import { CarEditComponent } from './components/car-edit/car-edit.component';
+import { ColorEditComponent } from './components/color-edit/color-edit.component';
+import { BrandEditComponent } from './components/brand-edit/brand-edit.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +45,12 @@ import { PaymentComponent } from './components/payment/payment/payment.component
     SidebarComponent,
     CarDetailComponent,
     PaymentComponent,
+    BrandAddComponent,
+    ColorAddComponent,
+    CarAddComponent,
+    CarEditComponent,
+    ColorEditComponent,
+    BrandEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,11 +60,10 @@ import { PaymentComponent } from './components/payment/payment/payment.component
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      positionClass:"toast-bottom-left"
-    }
-    ),
+      positionClass: 'toast-bottom-left',
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

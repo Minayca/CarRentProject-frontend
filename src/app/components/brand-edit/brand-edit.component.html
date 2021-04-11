@@ -1,0 +1,88 @@
+<table class="table table-hover mt-3">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th style="padding-left: 1cm;">Marka</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let brand of brandList">
+      <td>{{ brand.brandId }}</td>
+      <td style="padding-left: 1cm;">{{ brand.brandName }}</td>
+      <td style="padding-left: 15cm">
+        <button
+          type="button"
+          class="btn btn-success btn-xs formButton"
+          data-bs-toggle="modal"
+          data-bs-target="#updateBrandModal"
+          (click)="setSelectedBrandToUpdate(brand)"
+          style="margin-right: 16px"
+        >
+          Güncelle
+        </button>
+      </td>
+      <td>
+        <button type="button" class="btn btn-danger" (click)="delete(brand)">
+          Sil
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div
+  class="modal fade"
+  id="updateBrandModal"
+  tabindex="-1"
+  aria-labelledby="updateBrandModal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateBrandTitle">Marka Güncelle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="brandUpdateForm" *ngIf="brandUpdateForm">
+          <div class="row">
+            <div class="col-4">
+              <label for="brandId">Id</label>
+              <input type="number" class="form-control" *ngIf="selectedBrand" id="brandId" name="brandId" formControlName="brandId" value="{{selectedBrand.brandId}}" readonly>
+            </div>
+            <div class="col-8">
+              <label for="brandName">Marka</label>
+              <input
+                type="text"
+                class="form-control"
+                *ngIf="selectedBrand"
+                id="brandName"
+                formControlName="brandName"
+                value="{{ selectedBrand.brandName }}"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Vazgeç
+        </button>
+        <button
+          class="btn btn-primary"
+          (click)="updateBrand()"
+          data-bs-dismiss="modal"
+        >
+          Kaydet
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
