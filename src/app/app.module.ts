@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -28,6 +28,11 @@ import { CarAddComponent } from './components/car-add/car-add.component';
 import { CarEditComponent } from './components/car-edit/car-edit.component';
 import { ColorEditComponent } from './components/color-edit/color-edit.component';
 import { BrandEditComponent } from './components/brand-edit/brand-edit.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { RegisterComponent } from './components/register/register.component';
+import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +56,10 @@ import { BrandEditComponent } from './components/brand-edit/brand-edit.component
     CarEditComponent,
     ColorEditComponent,
     BrandEditComponent,
+    LoginComponent,
+    RegisterComponent,
+    AdminPanelComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +72,9 @@ import { BrandEditComponent } from './components/brand-edit/brand-edit.component
       positionClass: 'toast-bottom-left',
     }),
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

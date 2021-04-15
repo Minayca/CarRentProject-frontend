@@ -12,9 +12,9 @@ export class CardService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getByCustomerId(customerId: number) {
+  getByCustomerId(userId: number) {
     let newPath =
-      this.apiUrl + 'cards/getbycustomerid?customerId=1' + customerId;
+      this.apiUrl + 'cards/getbyuserid?userId=' + userId;
     return this.httpClient.get<ListResponseModel<Card>>(newPath);
   }
 

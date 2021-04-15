@@ -32,7 +32,7 @@ export class CarAddComponent implements OnInit {
       colorId: ['', Validators.required],
       dailyPrice: ['', Validators.required],
       modelYear: ['', Validators.required],
-      description: ['']
+      description: [''],
     });
   }
 
@@ -44,8 +44,8 @@ export class CarAddComponent implements OnInit {
           this.toastrService.success(response.message, 'Başarılı');
         },
         (responseError) => {
-          if (responseError.error.Errors.length > 0) {
-            for (let i = 0; i < responseError.error.Errors.length; i++) {
+          if (responseError.error.Errors > 0) {
+            for (let i = 0; i < responseError.error.Errors; i++) {
               this.toastrService.error(
                 responseError.error.Errors[i].ErrorMessage,
                 'Doğrulama hatası'

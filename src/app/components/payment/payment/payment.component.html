@@ -33,75 +33,95 @@
     </table>
   </div>
 </div>
-<div class="card mt-4">
-  <div class="card-header text-center">
-    <strong>Ödeme İşlemlemi</strong>
-  </div>
-  <div class="card-body">
-    <div class="row">
-      <div class="inputbox mt-3">
-        <span>Kart Üzerindeki Ad Soyad</span>
-        <input
-          [(ngModel)]="cardOwnerName"
-          type="text"
-          name="name"
-          class="form-control"
-          required="required"
-        />
-      </div>
+
+<form [formGroup]="cardAddForm">
+  <div class="card mt-4">
+    <div class="card-header text-center">
+      <strong>Ödeme İşlemlemi</strong>
+    </div>
+    <div class="card-body">
       <div class="row">
-        <div class="col-md-6">
-          <div class="inputbox mt-3 mr-2">
-            <span>Kart Numarası</span>
-            <input
-              [(ngModel)]="cardNumber"
-              type="text"
-              name="name"
-              class="form-control"
-              required="required"
-            />
-            <i class="fa fa-credit-card"></i>
-          </div>
+        <div class="inputbox mt-3">
+          <span>Kart Üzerindeki Ad Soyad</span>
+          <input
+            formControlName="cardOwnerName"
+            type="text"
+            class="form-control"
+            id="cardOwnerName"
+            placeholder="Ad Soyad"
+          />
         </div>
+      </div>
+
+      <div class="row">
+        <div class="inputbox mt-3">
+          <span>Kart Numarası</span>
+          <input
+            formControlName="cardNumber"
+            type="text"
+            class="form-control"
+            id="cardNumber"
+            placeholder="Kart Numarası"
+          />
+          <i class="fa fa-credit-card"></i>
+        </div>
+      </div>
+
+      <div class="row">
         <div class="col-md-6">
           <div class="d-flex flex-row">
             <div class="inputbox mt-3 mr-2">
               <span>Son Kullanım Tarihi</span>
               <input
-                [(ngModel)]="expireMonth"
-                type="text"
-                name="name"
+                formControlName="expireMonth"
+                type="number"
                 class="form-control"
-                required="required"
-              />
-              <input
-                [(ngModel)]="expireYear"
-                type="text"
-                name="name"
-                class="form-control"
-                required="required"
+                id="expireMonth"
+                placeholder="MM"
               />
             </div>
-            <div class="inputbox mt-3 mr-2">
-              <span>Güvenlik Kodu</span>
+            <div class="inputbox mr-2" style="padding-top: 10.5mm">
               <input
-                [(ngModel)]="cvc"
-                type="text"
-                name="name"
+                formControlName="expireYear"
+                type="number"
                 class="form-control"
-                required="required"
+                id="expireYear"
+                placeholder="YYYY"
               />
             </div>
           </div>
         </div>
+
+        <div class="inputbox mt-3 col-md-6">
+          <span>Güvenlik Kodu</span>
+          <input
+            formControlName="cvc"
+            type="text"
+            class="form-control"
+            id="cvc"
+            placeholder="CVC"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="checkbox mb-3">
+        <label class="checkbox-inline">
+          <input
+            type="checkbox"
+            name="true"
+            value="true"
+            [(ngModel)]="isChecked"
+            [ngModelOptions]="{ standalone: true }"
+          />
+          Beni Hatırla
+        </label>
+      </div>
+      <div class="row">
+        <button (click)="payment()" class="btn btn-success">
+          <strong>{{ amountOfPayment | currency: "₺" }} </strong>Ödeme Yap
+        </button>
       </div>
     </div>
   </div>
-  <div class="card-footer">
-    <div class="row">
-      <button (click)="payment()" class="btn btn-success">
-        <strong>{{ amountOfPayment | currency: "₺" }} </strong>Ödeme Yap
-      </button>
-    </div>
-  </div>
-</div>
+</form>

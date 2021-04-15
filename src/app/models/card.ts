@@ -1,6 +1,6 @@
 export interface Card {
   id: number;
-  customerId: number;
+  userId: number;
   cardOwnerName: string;
   cardNumber: string;
   expireMonth: number;
