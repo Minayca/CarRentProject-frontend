@@ -41,6 +41,14 @@
     </div>
     <div class="card-body">
       <div class="row">
+        <button
+          *ngIf="cardExist == true"
+          type="button"
+          class="btn btn-link"
+          (click)="checkedCard()"
+        >
+          Mevcut kart bilgilerini getir
+        </button>
         <div class="inputbox mt-3">
           <span>Kart Üzerindeki Ad Soyad</span>
           <input
